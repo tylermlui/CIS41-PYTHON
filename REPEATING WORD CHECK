@@ -1,0 +1,45 @@
+
+#Tyler Lui
+#This code will create a dictionary of the words of a sentence and add check to see how many times it repeats
+
+
+import string
+response = "I Really liked how this class was formatted, I really learned alot from this course. I liked how the labs were set up and it helped me learn alot through the different examples and applying them. I Hope to use these skills in furthering my carreer coding."
+
+f = open("response.txt", "w+")
+f.write(response)
+f.close()
+f = open("response.txt", "r")
+
+responses = dict()
+r=0
+for text in f:
+    text = text.strip().lower()
+    text = text.translate(text.maketrans('','',string.punctuation))
+    response1 = text.split()
+
+    userIn = input("Enter to see how many times the word repeats: ").strip().lower()
+    userIn = userIn.translate(text.maketrans('','',string.punctuation))
+
+    with open('response.txt', 'r') as f:
+        print(f'{userIn} repeats: ')
+        print(str(sum(line.count(userIn) for line in f))
+)
+        x =str(sum(line.count(userIn) for line in f))
+
+    f = open("response.txt", "r")
+
+    for resp in response1:
+        if resp in responses:
+            responses[resp] +=1            
+            
+            
+        else:
+            responses[resp]=1
+
+for key in list(responses.keys()):
+    print(key, ':', responses[key])
+
+f.close()
+with open("response.txt", "a") as f:
+    f.write(x)
