@@ -1,0 +1,23 @@
+#Tyler Lui
+#This program will call a function and rotate the numbers one place to the right.
+def rotation(): # creating function rotation()
+    nums_list= [] #declaring blank list
+  
+    numbers= int(input()) #getting input for amount of numbers for the list
+    print(f'Enter a list of {numbers} numbers:')
+    for nums in range(0, numbers): #for loop to prompt input each time the user inputs value and presses enter up until the value 'numbers'
+        i = int(input()) 
+        nums_list.append(i) # adds each value to the end of the list
+ 
+    nums_list.insert(0, nums_list[-1]) #inserts the last number of the list behind the first number in index 0 pushing all values to the right.
+    nums_list.pop() # takes off the last number of the list after it is moved to the front of the list
+    print(nums_list)   
+
+
+def main(): #declaring main function 
+    print("Enter a word you think is a palindrome")
+    pal_check() #calling pal_check function
+    print("Enter the amount of numbers of a list you would like to rotate")
+    rotation() #calling rotation function
+
+main() #calling main function
