@@ -1,0 +1,18 @@
+#Tyler Lui
+"""This program will call a function to see wether the inputted string is a palinrrome the program will
+return true if it is not a palindrome the program will return false."""
+
+def pal_check(): #creating function pal_check()
+    pal =input().strip().lower() #strips the user input of any whitespaces and makes all characters lowercase
+    start= 0 #sets the first letter = to 0 
+    end = len(pal)-1 #subtracts length of the word by one due to the start of the word being index 0 would make it so we need to subtract one from the end
+    
+    while start< end: #while loop to check if the value of the index at the start of the word is less than the value of the index at the end of the word
+        if pal[start] != pal[end]: #if statement to check if the index of the start of the word does not equal the index of the end of the word
+            print('Not a palindrome')
+            return False 
+        start =+1 #increments the start while the start index is less than the end index
+        end =-1
+    else:
+        print('This is a Palindrome')
+        return True
