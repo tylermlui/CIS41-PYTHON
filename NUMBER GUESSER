@@ -1,0 +1,55 @@
+"""
+Tyler Lui
+
+This program has the user guess a random number provided by the program. If the guess is correct it will notify the user and if the
+guess is wrong it will notify the user if it is too low or too high. It will also tell the user the remaining number or tries left 
+to guess the number.It uses functions to make sure the user doesn't enter a number lower than 1 or higher than 20 and will loop 
+until the user has entered a number between 1 and 20.
+
+
+"""
+import random
+
+def getInput():#function for getting input 
+    global user_num #using global variable for use in checkNum 
+    user_num = int(input('Enter Your Guess Here: '))
+    while user_num not in range(1,20): #while loop to check if user_num is not in range 
+        user_num = int(input('Error: Choose a value between 1 and 20.'))
+    else:
+        if user_num in range(1,20):
+            return user_num
+
+
+def checkNum(user_num,randNum): #function for checking if number too high, low, or correct 
+
+    if user_num > randNum: #returns "too low " if the user entered number is greater than the random number
+        return 'Too Low'
+
+    if user_num < randNum:
+        return "Too High"
+        
+    if user_num == randNum: #returns "You got it if the user enters correct number"
+        return 'You Got it!'
+
+
+def main():
+    game_trys=5
+    while game_trys >0: #while loop for 5 trys to guess
+        user_num = random.randint(1, 20) 
+        num_check= " " 
+        while num_check != 'You Got it!': #while loop while the num_check does not equal "you got it" then it will execute the code 
+            randNum = getInput()
+            num_check = checkNum(user_num,randNum) #sets the num_check variable and gets the checkNum function with user_num and randNum as arguments 
+            game_trys= game_trys-1 #subtracts game trys after each time the user guesses
+            if game_trys ==0: 
+                print('Your Game is over')
+                break #breaks the loop if user runs out of tries 
+            print(num_check) 
+            print (f'You have {game_trys} trys left\n')
+        else: #else statement will execute if the correct number is chosen and will exit the program
+            print("Good Game!") 
+            break
+            
+            
+
+main()
