@@ -1,0 +1,32 @@
+'''
+Tyler Lui
+CIS 41A
+Chapter 4 Exercise 6
+This program will check to see that the user inputted a valid email address and will find the domain name and print it. If the user input does not have 
+a '@' or a '.' in it, then the user will be prompted again until they enter a valid email address.
+'''
+
+email_input = input("Please input your email address:")
+input_loop = False
+valid_inputs = ['@', '.']
+while input_loop == False:
+    if all(i in email_input for i in valid_inputs):
+        input_loop = True
+        print("Valid Email Address")
+
+    else:
+        input_loop = False
+        print("Invalid Email Address!")
+        email_input = input("Please input a valid email address!")
+        
+
+atmark_search = '@'
+dot_search = '.'
+for c in range(0, len(email_input)):
+    if email_input[c] == atmark_search:
+        atmarkIndex= email_input.index(atmark_search)
+for l in range (0, len(email_input)):
+    if email_input[l] == dot_search:
+        dotIndex = email_input.index(dot_search)
+
+print(f"Domain: {email_input[atmarkIndex+1:dotIndex]}")
