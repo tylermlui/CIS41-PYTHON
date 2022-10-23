@@ -1,0 +1,69 @@
+'''
+Tyler Lui
+CIS 41A
+Chapter 4 Exercise 2
+This program will ask for the users company name and then prompt the user for an 
+input of the hours worked and the rate of pay and will calculate the overtime pay by multiplying the rate by 1.5
+for every hour after 40 hours then adding it back to the base pay up to 40 hours.
+If the input is not a numeric value or a positive value the program will output an error to enter a 
+numeric input or a positive input and will loop until the user enters a positive or numeric value. The program
+will also give the user a document number by making generating a random number from 1000 to 2000. It will then
+display the gross pay from the company.
+
+'''
+import random
+
+NORMAL_WEEK_HRS = 40
+OVERTIMERATE = 1.5
+user_company = input("Enter your company name: ")
+while True:
+    input_hours = input("Enter Hours: ")
+    try:
+        normal_time_hours = float(input_hours)
+        pass
+    except  ValueError:
+        print("Error, please enter numeric input")
+    try:  
+        normal_time_hours = float(input_hours)
+        if normal_time_hours < 0:
+            print("Error please enter a positive input")
+        else:
+            break
+    except ValueError:
+        print(" ")
+
+while True:
+    input_rate = input("Enter Rate: ")
+    try:
+        normal_time_rate = float(input_rate)
+        pass
+    except  ValueError:
+        print("Error, please enter numeric input")
+    try:  
+        normal_time_rate = float(input_rate)
+        if normal_time_rate < 0:
+            print("Error, please enter a positive input")
+        else:
+            break
+    except ValueError:
+        print(" ")
+
+if normal_time_hours > NORMAL_WEEK_HRS:
+    
+    overtime_hours = normal_time_hours - NORMAL_WEEK_HRS
+    normal_time_hours = normal_time_hours - overtime_hours
+    
+else:
+    overtime_hours = 0
+normal_time_pay = normal_time_hours * normal_time_rate 
+over_time_rate = normal_time_rate * OVERTIMERATE
+over_time_pay = overtime_hours * over_time_rate
+total_pay = over_time_pay + normal_time_pay
+    
+document_num = random.randint(1000, 2000)
+print(f'Company: {user_company}')
+print(f'Hours: {normal_time_hours}')
+print(f'Rate: {normal_time_rate}')
+print("*************************************************")
+print(f'Your document number is: {document_num}')
+print(f'Your {user_company} gross pay is: {round(total_pay,2)} dollars')
