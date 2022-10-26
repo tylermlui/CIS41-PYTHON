@@ -1,0 +1,33 @@
+def get_input():
+   getHours = float(input("Enter Hours: "))
+   getRate = float(input("Enter Rate: "))
+   return getHours, getRate
+  
+def compute_pay(userHours, userRate):
+    OVERTIMEHOURS = 40
+    OVERTIMERATE = 1.5
+       
+    if userHours > OVERTIMEHOURS:
+        rateOver = userRate * OVERTIMERATE
+        hoursOver = userHours - OVERTIMEHOURS
+        userOvertimepay = hoursOver * rateOver
+
+    else:
+        hoursOver = 0
+        userOvertimepay = 0
+
+    baseUserHours = userHours - hoursOver
+    basePay = baseUserHours * userRate
+    overTimePay = basePay + userOvertimepay
+    
+    return overTimePay
+
+def print_output(userPay):
+    print(f'Pay: {userPay}')
+
+def main():
+    the_hours, the_rate = get_input()
+    the_pay = compute_pay(the_hours, the_rate)
+    print_output(the_pay)
+
+main()
