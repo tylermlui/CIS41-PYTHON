@@ -1,0 +1,269 @@
+import sys
+def show_menu():
+    '''displays menu, creats global menu dictionary'''
+    global dict_menu
+    dict_menu = {0:{'Name': 'De Anza Burger','Price':'5.25'}, 
+                 1:{'Name':'Bacon Cheese', 'Price':'5.75'}, 
+                 2:{'Name':'Mushroom Burger','Price':'5.95'},
+                 3:{'Name':'Western Burger','Price': '5.95'},
+                 4:{'Name':'Don Cali Burger','Price':'5.95'}}
+    print(" Burger Club Menu")
+    print(f" #1 {dict_menu[0]['Name']}: $5.25")
+    print(f" #2 {dict_menu[1]['Name']}: $5.75")
+    print(f" #3 {dict_menu[2]['Name']}: $5.95")
+    print(f" #4 {dict_menu[3]['Name']}: $5.95")
+    print(f" #5 {dict_menu[4]['Name']}: $5.95")
+    print(" #6 Exit")
+
+def get_inputs():
+    ''' returns the 5 lists of quantities '''
+    
+    quant1=[]
+    quant2=[]
+    quant3=[]
+    quant4=[]
+    quant5=[]
+  
+    while True:
+
+          while True:
+              try:
+                userItem= input("Please enter which number you would like:\n")
+                userItem= int(userItem)
+              except ValueError:
+                print('Error: please enter a number')
+        
+              try:  
+                    userItem = int(userItem)
+                    if userItem < 0:
+                        print("Error: please enter a positive input")
+                    else:
+                        break
+              except ValueError:
+                    continue
+       
+          try:
+            
+            if userItem==1:
+                
+                while True:
+                    
+                    try: 
+                        userQuant= input(f"Enter how many #{userItem}'s you would like:\n")
+                        try :
+                            userQuant=int(userQuant)
+                            
+                        except ValueError:
+                            print('Error: please enter a number')
+                        try:
+                            userQuant=int(userQuant)
+                            if userQuant < 0:
+                                print("Error: please enter a positive input")
+                            else:
+                                break
+                        except ValueError:
+                            continue
+                    except ValueError:
+                          continue
+ 
+                quanitity1=userQuant
+                quant1.append(quanitity1)               
+
+
+            elif userItem==2:
+
+                while True:
+                    
+                    try: 
+                        userQuant= input(f"Enter how many #{userItem}'s you would like:\n")
+                        try :
+                            userQuant=int(userQuant)
+                            
+                        except ValueError:
+                            print('Error: please enter a number')
+                        try:
+                            userQuant=int(userQuant)
+                            if userQuant < 0:
+                                print("Error: please enter a positive input")
+                            else:
+                                break
+                        except ValueError:
+                            continue
+                    except ValueError:
+                          continue
+        
+                quanitity2=userQuant
+                quant2.append(quanitity2)
+
+             
+            elif userItem==3:
+
+                while True:
+                    
+                    try: 
+                        userQuant= input(f"Enter how many #{userItem}'s you would like:\n")
+                        try :
+                            userQuant=int(userQuant)
+                            
+                        except ValueError:
+                            print('Error: please enter a number')
+                        try:
+                            userQuant=int(userQuant)
+                            if userQuant < 0:
+                                print("Error: please enter a positive input")
+                            else:
+                                break
+                        except ValueError:
+                            continue
+                    except ValueError:
+                          continue
+            
+
+                quanitity3=userQuant
+                quant3.append(quanitity3)
+ 
+
+            elif userItem==4:
+
+                while True:
+                    
+                    try: 
+                        userQuant= input(f"Enter how many #{userItem}'s you would like:\n")
+                        try :
+                            userQuant=int(userQuant)
+                            
+                        except ValueError:
+                            print('Error: please enter a number')
+                        try:
+                            userQuant=int(userQuant)
+                            if userQuant < 0:
+                                print("Error: please enter a positive input")
+                            else:
+                                break
+                        except ValueError:
+                            continue
+                    except ValueError:
+                          continue
+
+                quanitity4=userQuant
+                quant4.append(quanitity4)            
+
+
+            elif userItem==5:
+
+                while True:
+                    
+                    try: 
+                        userQuant= input(f"Enter how many #{userItem}'s you would like:\n")
+                        try :
+                            userQuant=int(userQuant)
+                            
+                        except ValueError:
+                            print('Error:please enter a number')
+                        try:
+                            userQuant=int(userQuant)
+                            if userQuant < 0:
+                                print("Error: please enter a positive input")
+                            else:
+                                break
+                        except ValueError:
+                            continue
+                    except ValueError:
+                          continue
+            
+                quanitity5=userQuant
+                quant5.append(quanitity5)
+                
+            elif userItem==6:
+                try:
+                    if userQuant>0:
+                        break
+                    elif userQuant<0:
+                        sys.exit()
+                except UnboundLocalError:
+                    print("Thank you have a great day!")
+                    sys.exit()
+ 
+            elif 0>userItem or userItem>6 :
+ 
+                    print('Error: Please Enter a number 1-6')
+                    continue
+
+          except ValueError:
+              print('Error: Please enter a number')
+              continue
+              
+            
+    return quant1 ,quant2, quant3, quant4, quant5
+
+
+def compute_bill(a,b,c,d,e):
+    ''' takes arguments of quantities of the sum of each quan list and places 
+    them into a dictionary'''
+    global quantDict
+    quantDict={0:a, 1:b, 2:c, 3:d, 4:e }
+
+    while True:
+        occupation=input('Are you a student or staff? \n')
+        if 'student' in occupation.strip().lower():
+            taxrate=0
+            break
+        elif 'staff' in occupation.strip().lower():
+            taxrate=0.09
+            break
+        else:
+            print("Error: please enter if you are a student or staff ")
+            continue
+
+    burgerPrices=[]
+
+    for p in range(5):
+        x=float(quantDict[p])
+        burgerPrice=float(dict_menu[p]['Price'])
+        totalBurgerPrice= x * burgerPrice
+        burgerPrices.append(round(totalBurgerPrice,2))
+      
+
+  
+    subtotal=sum(burgerPrices)    
+    taxAmount=subtotal*taxrate
+    beforeTax= subtotal
+    total =taxAmount+subtotal
+    
+    return burgerPrices,beforeTax,taxAmount,total
+
+
+def print_bill(burgerPrices,beforeTax,taxAmount,bill):
+    '''takes the arguments for the burgerPrices,beforeTax,taxAmount,and bill 
+    and prints the bill.'''
+    print('***********************Your Bill**************************')
+    for p in range(5):
+        if quantDict[p] > 0:
+            print(f"{quantDict[p]} {dict_menu[p]['Name']} : ${burgerPrices[p]}")
+    
+     
+    print(f'SubTotal: ${round(beforeTax,2)}') 
+    print(f'Tax: ${round(taxAmount)}')
+    print(f'Total: ${round(bill,2)}')
+    print('**********************************************************') 
+
+def main():
+    ''' calls show menu, for get_inputs it sums the lists of the quantities
+    and passes the values for each sum of list to compute_bill()
+    and passes the return of compute bill to print_bill()'''
+    show_menu()
+  
+    
+    quant1 ,quant2, quant3, quant4, quant5 = get_inputs()
+    
+    quan1=sum(quant1) #sums the lists of each quantity of each number
+    quan2=sum(quant2)
+    quan3=sum(quant3)
+    quan4=sum(quant4) 
+    quan5=sum(quant5)
+
+    burgerPrices,beforeTax,taxAmount,total=compute_bill(quan1 ,quan2, quan3, quan4, quan5)
+    
+    print_bill(burgerPrices,beforeTax,taxAmount,total)
+
+main()
